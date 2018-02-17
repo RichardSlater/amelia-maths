@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Quick Maths</title>
+        <style>
+            body {
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+            }
+
+            div#equation {
+                width: 100%;
+                font-size: xx-large;
+                text-align-last: center;
+            }
+
+            ul > li {
+                float: left; 
+                font-size: xx-large;
+                display: block;
+                text-align: center;
+                line-height: 2em;
+                border: 2px solid gray;
+                width: 2em;
+                height: 2em;
+                margin: 0.2em;
+            }
+
+            li.correct {
+                background-color: green;
+                color: white;
+            }
+            
+            li.incorrect {
+                background-color: red;
+                color: white;
+            }
+
+            #button {
+                font-size: xx-large;
+                clear: both;
+                width: 100%;
+                text-align: center;
+            }
+        </style>
+        <script lang="javascript">
+            window.addEventListener("DOMContentLoaded", (function () {
+                var lhs = Math.floor(Math.random() * 10);
+                var rhs = Math.floor(Math.random() * 10);
+                var result = lhs + rhs;
+                document.getElementById('equation').innerText = lhs + " + " + rhs + " = ??";
+                
+                var answers = document.getElementById('answers');
+                for (i = 0; i < 21; i++) {
+                    var el = document.createElement("li");
+                    el.appendChild(document.createTextNode(i));
+                    el.addEventListener('click', function(event) {
+                        if (event.target.innerText === result.toString()) {
+                            event.target.setAttribute("class", "correct")
+                        } else {
+                            event.target.setAttribute("class", "incorrect")
+                        }
+                    });
+                    answers.appendChild(el);
+                }
+            }), false);
+        </script>
+    </head>
+    <div id="equation"></div>
+    <ul id="answers"></ul>
+    </ul>
+    <div id="button">
+        <a onClick="history.go(0); return false;" href="#">Try Another?</a>
+    </div>
+</html>
